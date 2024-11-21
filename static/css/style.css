@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
+
+.playfair-display {
+  font-family : "Playfair Display", serif;
+  font-size: 30;
+}
+
+body {
+    background-color: #F9F9FC;
+}
+
+#wrapper{
+    width:980;
+    height:auto;
+    margin:0 px auto;
+}
+
+
+
+

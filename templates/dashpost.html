@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+<div class = "row mt-3">
+    <div class = "col-md-10 mx-auto">
+        <h3>Gönderi Kontrol Paneli</h3>
+        <hr>
+        <a class = "btn btn-danger" href = "{%url 'posts:addpost'%}">Gönderi Paylaş</a>
+        <hr>
+        {% if posts %}
+            <table class = "table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Yazar</th>
+                        <th scope="col">Tarih</th>
+                        {% if user == superUser %}
+                        <th scope="col">Sil</th>
+                        {% endif %}
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <th scope="row">{{post.id}}</th>
+                            <td><a href="{% url 'posts:detail' post.id %}">{{post.title}}</a></td>
+                            <td>{{post.author.username}}</td>
+                            <td>{{post.created_date}}</td>
+
+
+                        </tr>
+                    {% endfor %}
+                <!--<tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr> -->
+                
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-danger">
+                Henüz Bir Gönderi Paylaşmadınız 
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock body %}
+
+
+
+
+

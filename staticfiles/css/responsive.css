@@ -1,0 +1,6 @@
+.stil {
+
+}
+@media (min-width: 1300px){
+    row row-cols-1 row-cols-md-4 row-col-ms-2 g-3
+}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row mt-3">
+    <div class="col-md-10 mx-auto">
+            <h3>Dergi Kontrol Paneli</h3>
+            <hr>
+            <a class = "btn btn-danger" href = "{% url 'magazines:addmagazine' %}">Dergi Ekle</a>
+            <hr>
+            {% if magazines %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Yazar</th>
+                        <th scope="col">Tarih</th>
+                        <th scope="col">Güncelle</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for magazine in magazines %}
+                            <tr>
+                                <th scope="row">{{magazine.id}}</th>
+                                <td><a href="{% url 'magazines:detail' magazine.id %}">{{magazine.title}}</a></td>
+                                <td>{{magazine.author.username}}</td>
+                                <td>{{magazine.created_date}}</td>
+                                <td><a href="{% url 'magazines:update' magazine.id %}" class = "btn btn-danger">Güncelle</a></td>
+                            </tr>
+                        {% endfor %}
+                    <!--<tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr> -->
+                    
+                    </tbody>
+                </table>
+    
+            {% else %}
+                <div class="alert alert-danger">
+                    Henüz Bir Derginiz Bulunmuyor
+                </div>
+            {% endif %}
+    </div>
+</div>
+{% endblock body %}
