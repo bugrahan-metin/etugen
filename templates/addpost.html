@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+<div class = "row">
+    <div class = "col-md-6 mx-auto">
+        <h3>Gönderi Oluştur</h3>
+        <hr>
+        <form method = "post" enctype = "multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form|crispy}}
+            <br>
+            <button type = "submit" class = "btn btn-danger">Gönderiyi Paylaş</button>
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock  %}

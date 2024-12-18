@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %}
+
+<div class="row">
+    <div class="col-lg-9">
+        <div class = "col-md-10 offset-md-3 mt-2" style = "background-color:white; border-radius:0 20px 20px 20px; padding:15px;">
+            <div class = "title mt-2" style = "text-align: center;">
+                <h3>{{magazine.title}}</h3>
+            </div>
+        </div>
+        <div class = "col-md-10 offset-md-3 mt-2" style = "background-color:white; border-radius:0 20px 20px 20px; padding:15px;">
+            <ul style="padding: 0; margin: 0 0 0 20px;">
+                <li style="display: inline; margin-right: 10px;"><span style= "font-weight:bold;" >ISSN:</span> {{magazine.ıssn}}</li>
+                <li style="display: inline; margin-right: 10px;"><span style= "font-weight:bold;" >Başlangıç:</span> {{magazine.first_create}} </li>
+                <li style="display: inline; margin-right: 10px;"><span style= "font-weight:bold;" >Yapımcı:</span> {{magazine.author}} </li>
+            </ul>
+        </div>
+
+        <div class = "col-md-10 offset-md-3 mt-2 mb-5">
+            <div class="container">
+                <div class="row justify-content-around" style = "height:500px;">
+
+                    <div class="col-4" style = "background-color:white; border-radius:20px; padding:15px;">
+                        <div style = "margin: 30px 30px 55px 30px;">
+                            {% if magazine.image %}
+                            <img src="{{magazine.image.url}}"  style="width: 100%; height: 100%; object-fit: cover;">
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <div>
+                            {% if magazine.file %}
+                                <a href="{{magazine.file.url}}" class= "bi bi-file-earmark-pdf-fill" style= "text-decoration:none; color: red;" download> PDF </a>
+                                
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-4" style = "background-color:white; border-radius:20px; padding:15px;">
+                        <div style = "margin-left: 20px;  height : 25px;">
+                            <h4>Hakkında</h4>
+                        </div>
+                        <hr>
+                        <div class = "content" style = "margin:0 0 20px 20px; font-size:18px;  height : 400px; overflow:auto; scrollbar-width : thin;">
+                            {{magazine.about|safe}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock body %}
+
+

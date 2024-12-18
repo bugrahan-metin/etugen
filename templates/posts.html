@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block navbar %}
+
+{% endblock navbar %}
+
+
+
+{% block body %}
+{% load static %}
+<div style = "margin:10px 80px 0px 0px;">
+    <div class="d-flex justify-content-around">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static "images/etügen5.png" %}" alt="">
+        </a>
+        <h3>Gönderiler</h3>
+        <h3></h3>
+        {% comment %} <a class = "btn btn-danger" href = "{%url 'posts:addpost'%}">Gönderi Paylaş</a> {% endcomment %}
+    </div>
+
+</div>
+
+<hr>
+{% if posts %}
+
+{% for post in posts %}
+
+<a href="{%url 'posts:detail' post.id%}">
+    <div class="row" style = "max-width: 100%;">
+        <div class="col-lg-5 col-lg-19 col-md-8 col-xs-1 mx-auto">
+            <div class="card" style="margin-bottom: 20px; width: 100%;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 mt-2 text-muted">{{post.author}}</h6>
+                    
+                    <a style = "text-decoration: none;" href="{% url 'posts:detail' post.id %}">
+                        <h5 class="card-title"> {{post.title}}</h5>
+                    </a>
+                    <hr>
+                    <p class="card-text">{{post.content|safe|truncatewords:98}}</p>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <div class="text-muted fst-italix mb-2">siteye eklenme tarihi {{post.created_date}}</div>
+                        <p></p>
+                        <h6>
+                            {{post.yazar}}
+                        </h6>
+                    </div>
+                    {% comment %} <div class="text-muted fst-italix mb-2">siteye eklenme tarihi {{post.created_date}}</div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+
+{% endfor %}
+
+{% else %}
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <div class = "alert alert-danger">
+                Gönderi Bulunamadı
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock  %}

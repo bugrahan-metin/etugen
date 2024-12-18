@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %}
+{% comment %} <div class="row">
+    <div class="col-md-3 mx-auto">
+        <div class="col-lg-8 mt-4">
+
+            <h3>Dergiler</h3>
+            <hr>
+            <form class="d-flex">
+                {% csrf_token %}
+                <input class="form-control me-2" name = "keyword" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr> {% endcomment %}
+<div class="row">
+    <div class="col-md-3 mx-auto">
+        <div class="col-lg-8 mt-4">
+            <h3>Dergiler</h3>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-md-3 mx-auto">
+        <div class="col-lg-16">
+            <form class="d-flex">
+                {% csrf_token %}
+                <input class="form-control me-2" name = "keyword" type="search" placeholder="Dergi Ara" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Ara</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+{% if magazines %}
+<div class="row">
+    <div class = "col-lg-10 col-lg-10 col-md-8 col-xs-1 col col mx-auto">
+        <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1 row-col-ms-2 g-3">
+            {% for magazine in magazines %}
+            <div class="col">
+                <div class="card" style = "height : 500px;">
+                    <div style = "margin: 30px 30px 0px 30px; height : 300px;">
+                        {% if magazine.image %}
+                        <a href = "{% url 'magazines:detail' magazine.id %}">
+                            <img src="{{magazine.image.url}}" class="card-img-top"
+                            alt="Skyscrapers" style="width: 100%; height: 300px;">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <a href="{% url 'magazines:detail' magazine.id %}" style= "text-decoration: none;" >
+                            <h5 class="card-title" style = "text-align:center; color: #093777;">{{magazine.title}}</h5>
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="badge bg-secondary text-decoration-none link-light" style = "float:left;"href="">e-ISSN: {{magazine.e_ıssn}}</div>
+                        <div class="badge bg-secondary text-decoration-none link-light" style = "float:right;" href="">ISSN: {{magazine.ıssn}}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div style= "height:100px;">
+
+</div>
+{% else %}
+
+<div class="row" style: "max-width: 100%;">
+    <div class="col-md-8 offset-md-4">
+        <div class="col-lg-8">
+            <div class = "alert alert-danger">
+                Henüz Bir Dergi Yayınlamadık. Ziyaretiniz İçin Teşekkür Ederiz.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock body %}
+
